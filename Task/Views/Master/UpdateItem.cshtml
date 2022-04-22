@@ -1,0 +1,22 @@
+﻿@model Task.Models.Entity.Tbl_Master
+@{
+    ViewBag.Title = "UpdateItem";
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+<br />
+<h4>Update Item Page</h4>
+<br />
+<form method="post">
+    @Html.Label("Item Name")
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+    @Html.Label("Item Price")
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    <br />
+    @Html.Label("Item Unit")
+    @Html.TextBoxFor(x => x.Unit, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-danger">Update</button>
+</form>
+

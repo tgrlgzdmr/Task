@@ -1,0 +1,95 @@
+﻿@using Task.Models.Entity
+@model List<Tbl_Detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Item List</h3>
+                            </div>
+                            <div class="card-body">
+                                @{  int c = ViewBag.id;
+                                    DbTaskEntities dbo = new DbTaskEntities();
+                                    if (dbo.Tbl_Detail.Where(u => u.ItemId == c).Count() == 0)
+                                    {
+
+                                        <a href="/Detail/AddDetail/@c" class="btn btn-info">
+                                            <i class="fas fa-plus"></i>
+                                            Add New Detail
+                                        </a>
+                                    }
+                                    else
+                                    { } }
+                                <br />
+                                <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Item Name</th>
+                                            <th>Item QTY</th>
+                                            <th>Date</th>
+
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var x in Model)
+                                        {
+
+
+                                            DbTaskEntities db = new DbTaskEntities();
+                                            var d = db.Tbl_Master.Where(t => t.Id == c).ToList();
+                                            var a = d.Find(q => q.Id == c);
+                                            string b = a.Name;
+
+
+
+
+
+                                            <tr>
+                                                <td>@x.ItemId</td>
+                                                <td>@a.Name</td>
+                                                <td>@x.QTY</td>
+                                                <td>@x.Date</td>
+
+
+                                                <td>
+                                                    <a href="/Detail/DeleteDetail/@x.ItemId" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="/Detail/UpdateDetail/@x.ItemId" class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Update
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

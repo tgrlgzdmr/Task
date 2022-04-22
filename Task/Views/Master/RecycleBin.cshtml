@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "RecycleBin";
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Deleted Item List</h3>
+                            </div>
+                            <div class="card-body">
+                                
+                                <br />
+                                <br />
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Item No</th>
+                                            <th>Item Name</th>
+                                            <th>Item Price</th>
+                                            <th>Item Unit</th>
+                                            <th>Detail</th>
+                                            <th>Update and Restore</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var x in Model)
+                                        {
+                                            <tr>
+                                                <td>@x.Id</td>
+                                                <td>@x.Name</td>
+                                                <td>@x.Price</td>
+                                                <td>@x.Unit</td>
+                                                <td><a href="/Detail/Index/@x.Id">Detail</a></td>
+                                                
+                                                <td>
+                                                    <a href="/Master/UpdateItem/@x.Id" class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                        Update and Restore
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

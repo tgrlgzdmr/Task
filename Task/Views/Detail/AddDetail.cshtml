@@ -1,0 +1,32 @@
+﻿@using Task.Models.Entity
+@model Tbl_Detail
+@{
+    ViewBag.Title = "AddDetail";
+    Layout = "~/Views/Shared/_ItemLayout.cshtml";
+}
+
+@{ 
+    int c = ViewBag.b;
+    DbTaskEntities db = new DbTaskEntities();
+    var d = db.Tbl_Master.Where(t => t.Id == c).ToList();
+    var a = d.Find(q => q.Id == c);
+    string b = a.Name;
+}
+
+<br />
+<h4>Add Detail Page</h4>
+<br />
+@Html.Label("Item Name :" + " " + b)
+<br />
+@Html.Label("Item No" + " " + c)
+<br />
+<br />
+<form method="post">
+    @Html.Label("Item QTY")
+    @Html.TextBoxFor(x => x.QTY, new { @class = "form-control" })
+
+    <br />
+    <button class="btn btn-danger">Add Detail</button>
+</form>
+
+
